@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/087ba84a5c.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #info-card {
+            text-align: center;
+        }
+
+        .field {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+            flex: 1;
+        }
+
+        #user-info span {
+            flex: 2;
+            color: #444;
+            text-align: left;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="info-card">
+            <h1>User Information Card</h1>
+            <div id="user-info">
+                <div class="field">
+                    <span class="label">First Name:</span>
+                    <span id="fname"></span>
+                </div>
+                <div class="field">
+                    <span class="label">Last Name:</span>
+                    <span id="lname"></span>
+                </div>
+                <div class="field">
+                    <span class="label">Country:</span>
+                    <span id="country"></span>
+                </div>
+                <div class="field">
+                    <span class="label">Phone Number:</span>
+                    <span id="phone"></span>
+                </div>
+                <div class="field">
+                    <span class="label">State:</span>
+                    <span id="state"></span>
+                </div>
+                <div class="field">
+                    <span class="label">City:</span>
+                    <span id="city"></span>
+                </div>
+                <div class="field">
+                    <span class="label">Village:</span>
+                    <span id="village"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    var user = {
+        "fname": "",
+        "lname": "",
+        "country": "",
+        "phone": "",
+        "state": "",
+        "city": "",
+        "village": ""
+    }
+
+    function TakeData() {
+        var name = prompt("Enter you Name")
+        var lastname = prompt("Enter your last name")
+        var country = prompt("Entr your country")
+        var phone = prompt("Enter your phone")
+        var state = prompt("Enter your state")
+        var city = prompt("Enter your city")
+        var village = prompt("Enter your village")
+
+        user["fname"] = name;
+        user.lname = lastname;
+        user["country"] = country;
+        user.phone = phone;
+        user.state = state;
+        user.city = city;
+        user.village = village;
+
+
+        localStorage.setItem("user", JSON.stringify(user))
+        displayFunction();
+    }
+
+    function displayFunction() {
+        document.getElementById("fname").innerText = user.fname;
+        document.getElementById("lname").innerText = user.lname;
+        document.getElementById("country").innerText = user.country;
+        document.getElementById("phone").innerText = user.phone;
+        document.getElementById("state").innerText = user.state;
+        document.getElementById("city").innerText = user.city;
+        document.getElementById("village").innerText = user.village;
+    }
+
+    window.addEventListener("load", () => {
+        if (localStorage.getItem("user")) {
+            user = JSON.parse(localStorage.getItem("user"))
+            displayFunction();
+        }
+        else {
+            TakeData()
+        }
+
+    })
+</script>
+
+</html>
